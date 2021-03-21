@@ -25,8 +25,8 @@ async function getCheckoutSession(products, origin) {
     locale: 'fr',
     line_items: products,
     mode: 'payment',
-    success_url: 'http://localhost:3000/cart',
-    cancel_url: 'http://localhost:3000/cart',
+    success_url: origin,
+    cancel_url: origin,
   });
   return session
 }
