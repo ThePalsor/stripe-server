@@ -19,14 +19,14 @@ async function getDeliveryFees(soap_args) {
   });
 }
 
-async function getCheckoutSession(products, origin) {
+async function getCheckoutSession(products) {
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ['card'],
     locale: 'fr',
     line_items: products,
     mode: 'payment',
-    success_url: origin,
-    cancel_url: origin,
+    success_url: "https://thepalsor.github.io/info802-marketplace/",
+    cancel_url: "https://thepalsor.github.io/info802-marketplace/",
   });
   return session
 }
@@ -43,7 +43,7 @@ app.post('/create-checkout-session', async (req, res) => {
   console.log(products);
 
   //Creation de la session de paiement
-  const session = await getCheckoutSession(products, req.headers.origin);
+  const session = await getCheckoutSession(products);
 
   res.json({ id: session.id });
 });
